@@ -1,8 +1,10 @@
 {% extends '_layout.swig' %}
-{% import '_macro/post-collapse.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+{% import '_macro/post-collapse.swig' as post_template with context %}
+{% import '_macro/sidebar.swig' as sidebar_template with context %}
 
 {% block title %}{{ __('title.category') }}: {{ page.category }} | {{ title }}{% endblock %}
+
+{% block class %}category{% endblock %}
 
 {% block content %}
 
@@ -12,10 +14,10 @@
   <div class="post-block">
     <div class="posts-collapse">
       <div class="collection-title">
-        <{%- if theme.seo %}h2{% else %}h1{%- endif %} class="collection-header">{#
-        #}{{ page.category }}{#
-        #}<small>{{ __('title.category') }}</small>
-        </{%- if theme.seo %}h2{% else %}h1{%- endif %}>
+        <h2 class="collection-header">
+          {{- page.category }}
+          <small>{{ __('title.category') }}</small>
+        </h2>
       </div>
 
       {{ post_template.render(page.posts) }}
